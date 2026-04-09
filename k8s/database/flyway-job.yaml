@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: flyway-migrate
+  namespace: default
+  labels:
+    app: flyway-migrate
+spec:
+  ttlSecondsAfterFinished: 120
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: OnFailure
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:15-alpine
+          command:
+            - sh
+            - -c
+            - until pg_isready -h postgres -U workshop_user; do echo "Waiting for postgres..."; sleep 2; done
+      containers:
+        - name: flyway
+          image: edpiairo/devops-porto-get-together-database:0.0.5
+          command: ["/flyway/flyway"]
+          args:
+            - -url=jdbc:postgresql://postgres:5432/workshop_db
+            - -user=workshop_user
+            - -locations=filesystem:/flyway/sql
+            - migrate
+          env:
+            - name: FLYWAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
