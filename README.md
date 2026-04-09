@@ -137,6 +137,13 @@ kubectl port-forward service/backend 8000:8000
 curl http://localhost:8000/health
 ```
 
+**Database** (from inside the cluster only):
+```bash
+kubectl port-forward service/postgres 5432:5432
+# connect with any PostgreSQL client
+psql postgresql://workshop_user:workshop_pass@localhost:5432/workshop_db
+```
+
 ---
 
 ## Before Applying

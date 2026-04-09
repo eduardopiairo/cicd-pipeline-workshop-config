@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: flyway-migrate
+  namespace: default
+  labels:
+    app: flyway-migrate
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: flyway-migrate
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: flyway
+          image: edpiairo/devops-porto-get-together-database:0.0.5
+          env:
+            - name: FLYWAY_URL
+              value: jdbc:postgresql://postgres:5432/workshop_db
+            - name: FLYWAY_USER
+              value: workshop_user
+            - name: FLYWAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password

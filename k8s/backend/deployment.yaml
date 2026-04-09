@@ -15,6 +15,17 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:
+        - name: wait-for-migrations
+          image: bitnami/kubectl:latest
+          command:
+            - kubectl
+            - wait
+            - --for=condition=complete
+            - job/flyway-migrate
+            - --timeout=120s
+            - -n
+            - default
       containers:
         - name: backend
           image: edpiairo/devops-porto-get-together-backend:0.0.9
