@@ -20,7 +20,7 @@ spec:
             - until pg_isready -h postgres -U workshop_user; do echo "Waiting for postgres..."; sleep 2; done
       containers:
         - name: flyway
-          image: edpiairo/devops-porto-get-together-database:0.0.5
+          image: edpiairo/devops-porto-get-together-database:0.0.6
           command: ["/flyway/flyway"]
           args:
             - -url=jdbc:postgresql://postgres:5432/workshop_db
