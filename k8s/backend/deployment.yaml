@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: edpiairo/devops-porto-get-together-backend:0.0.6
+          image: edpiairo/devops-porto-get-together-backend:0.0.9
           ports:
             - containerPort: 8000
           env:
