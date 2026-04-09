@@ -1,4 +1,4 @@
-# DevOps Porto Get-Together — Kubernetes Config
+# DevOps Porto Get-Together — CI/CD Workshop Kubernetes Config
 
 This is the companion repository for the CI/CD Pipeline Workshop. It contains the Kubernetes manifests used by ArgoCD to deploy the **DevOps Porto Get-Together** application.
 
