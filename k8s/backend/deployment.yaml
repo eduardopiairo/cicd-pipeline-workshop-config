@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: default
   labels:
     app: backend
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: <DOCKERHUB_USERNAME>/backend:latest
+          image: edpiairo/devops-porto-get-together-backend:0.0.6
           ports:
             - containerPort: 8000
           env:
