@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: <DOCKERHUB_USERNAME>/frontend:latest
+          image: edpiairo/devops-porto-get-together-frontend:0.04
           ports:
             - containerPort: 80
           readinessProbe:
