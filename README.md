@@ -126,8 +126,9 @@ kubectl get services
 # minikube
 minikube service frontend --url
 
-# kind — use port-forward
-kubectl port-forward service/frontend 3000:80
+# kind — NodePort is not reachable from the host, use port-forward instead
+kubectl port-forward service/frontend 8081:80
+# open http://localhost:8081
 ```
 
 **Backend** (from inside the cluster only):
