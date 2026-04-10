@@ -24,7 +24,7 @@ spec:
             - until pg_isready -h postgres -U workshop_user; do echo "Waiting for postgres..."; sleep 2; done
       containers:
         - name: backend
-          image: edpiairo/devops-porto-get-together-backend:0.0.9
+          image: edpiairo/devops-porto-get-together-backend:0.0.15
           ports:
             - containerPort: 8000
           env:
